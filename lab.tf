@@ -9,7 +9,7 @@ terraform {
 }
 
 resource "aws_vpc" "VPC_main" {
-  cidr_block = "172.25.0.0/16"
+  cidr_block = "10.1.0.0/16"
 
   tags {
     Name = "VPC-AGU"
@@ -18,7 +18,7 @@ resource "aws_vpc" "VPC_main" {
 
 resource "aws_subnet" "subnet-AGU1" {
   vpc_id     = "${aws_vpc.VPC_main.id}"
-  cidr_block = "172.25.0.0/24"
+  cidr_block = "10.1.0.0/24"
 
   tags {
     Name = "AGU-pub"
