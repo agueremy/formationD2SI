@@ -25,6 +25,15 @@ resource "aws_subnet" "subnet-AGU1" {
   }
 }
 
+resource "aws_subnet" "subnet-AGU2" {
+  vpc_id     = "${aws_vpc.VPC_main.id}"
+  cidr_block = "10.1.1.0/24"
+
+  tags {
+    Name = "AGU-pub2"
+  }
+}
+
 resource "aws_internet_gateway" "gwAGU" {
   vpc_id = "${aws_vpc.VPC_main.id}"
 
