@@ -1,4 +1,11 @@
-provider "aws" {
+provider "aws" {}
+
+terraform {
+  backend "s3" {
+    bucket = "aguterraform.tfstate"
+    key    = "core/infra"
+    region = "eu-west-1"
+  }
 }
 
 resource "aws_vpc" "VPC_main" {
@@ -9,7 +16,7 @@ resource "aws_vpc" "VPC_main" {
   }
 }
 
-resource "aws_subnet" "main" {
+resource "aws_subnet" "subnet-AGU1" {
   vpc_id     = "${aws_vpc.VPC_main.id}"
   cidr_block = "172.25.0.0/24"
 
@@ -37,4 +44,9 @@ resource "aws_route_table" "rt-AGU" {
   tags {
     Name = "rt-AGU"
   }
+}
+
+resource "aws_route_table_association" "ra-AGU" {
+  subnet_id      = "${aws_subnet.subnet-AGU1.id}"
+  route_table_id = "${aws_route_table.rt-AGU.id}"
 }
