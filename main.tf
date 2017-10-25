@@ -19,6 +19,7 @@ resource "aws_vpc" "VPC_main" {
 resource "aws_subnet" "subnet-AGU1" {
   vpc_id     = "${aws_vpc.VPC_main.id}"
   cidr_block = "10.1.0.0/24"
+  availability_zone  = "eu-west-1c"
 
   tags {
     Name = "AGU-pub"
@@ -28,6 +29,7 @@ resource "aws_subnet" "subnet-AGU1" {
 resource "aws_subnet" "subnet-AGU2" {
   vpc_id     = "${aws_vpc.VPC_main.id}"
   cidr_block = "10.1.1.0/24"
+  availability_zone  = "eu-west-1a"
 
   tags {
     Name = "AGU-pub2"
